@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_054643) do
     t.string "manufacturer"
   end
 
-  create_table "userplatform", force: :cascade do |t|
+  create_table "userplatforms", force: :cascade do |t|
     t.integer "platform_id"
     t.integer "user_id"
   end
