@@ -1,3 +1,5 @@
 <% @users.each do |user| %>
-<p><%= user.username %></p>
+<p>Username: <%= user.username %></p>
+<p>Games: <%= user.games.count %></p>
+<p>Platforms: <%= user.platforms.count %></p>
 <% end %>
