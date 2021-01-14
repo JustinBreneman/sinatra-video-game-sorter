@@ -1,0 +1,43 @@
+User.create(username: "user1", email: "user1@email.com", password: "user1")
+User.create(username: "user2", email: "user2@email.com", password: "user2")
+User.create(username: "user3", email: "user3@email.com", password: "user3")
+User.create(username: "user4", email: "user4@email.com", password: "user4")
+User.create(username: "user5", email: "user5@email.com", password: "user5")
+User.create(username: "user6", email: "user6@email.com", password: "user6")
+User.create(username: "user7", email: "user7@email.com", password: "user7")
+User.create(username: "user8", email: "user8@email.com", password: "user8")
+User.create(username: "user9", email: "user9@email.com", password: "user9")
+User.create(username: "user10", email: "user10@email.com", password: "user10")
+Platform.create(name: "PS4", manufacturer: "Sony")
+Platform.create(name: "PS3", manufacturer: "Sony")
+Platform.create(name: "X-Box 360", manufacturer: "Microsoft")
+Platform.create(name: "X-Box One", manufacturer: "Microsoft")
+Platform.create(name: "Switch", manufacturer: "Nintendo")
+Platform.create(name: "Windows", manufacturer: "Microsoft")
+Platform.create(name: "Alexa", manufacturer: "Amazon")
+pc = Platform.find_by(name: "Windows")
+ps4 = Platform.find_by(name: "PS4")
+ps3 = Platform.find_by(name: "PS3")
+xbox360 = Platform.find_by(name: "X-Box 360")
+xboxone = Platform.find_by(name: "X-Box One")
+switch = Platform.find_by(name: "Switch")
+alexa = Platform.find_by(name: "Alexa")
+pc.games.build(title: "Skyrim", developer: "Bethesda", release_date: "11, November 2011")
+pc.games.build(title: "Skyrim Special Edition", developer: "Bethesda", release_date: "28, October 2016")
+pc.games.build(title: "Warframe", developer: "Digital Extremes", release_date: "25, March 2013")
+ps3.games.build(title: "Skyrim", developer: "Bethesda", release_date: "11, November 2011")
+xbox360.games.build(title: "Skyrim", developer: "Bethesda", release_date: "11, November 2011")
+ps4.games.build(title: "Skyrim Special Edition", developer: "Bethesda", release_date: "28, October 2016")
+ps4.games.build(title: "Warframe", developer: "Digital Extremes", release_date: "15, November 2013")
+xboxone.games.build(title: "Skyrim Special Edition", developer: "Bethesda", release_date: "28, October 2016")
+xboxone.games.build(title: "Warframe", developer: "Digital Extremes", release_date: "02, September 2014")
+switch.games.build(title: "Skyrim Special Edition", developer: "Bethesda", release_date: "17, November 2017")
+switch.games.build(title: "Warframe", developer: "Digital Extremes", release_date: "20, November 2018")
+alexa.games.build(title: "Skyrim Very Special Edition", developer: "Bethesda", release_date: "10, June 2018")
+pc.save
+ps3.save
+ps4.save
+xbox360.save
+xboxone.save
+switch.save
+alexa.save
