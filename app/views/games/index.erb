@@ -1,3 +1,7 @@
 <% @games.each do |game| %>
+<% user_count = @users.collect{|u| if u.games.include?(game) then u end}.count %>
 <p><%= game.title %></p>
+<p><%= game.developer %></p>
+<p><%= game.release_date %></p>
+<p><%= user_count %></p>
 <% end %>
