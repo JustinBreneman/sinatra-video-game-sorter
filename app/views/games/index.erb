@@ -1,7 +1,9 @@
 <% @games.each do |game| %>
-<% user_count = @users.collect{|u| if u.games.include?(game) then u end}.count %>
-<p><%= game.title %></p>
-<p><%= game.developer %></p>
-<p><%= game.release_date %></p>
-<p><%= user_count %></p>
+<% user_count = [] %>
+<% @users.each{|u| if u.games.include?(game) then user_count << u end} %>
+<h3>Title: <%= game.title %></h3>
+<p>Developer: <%= game.developer %></p>
+<p>Release Date: <%= game.release_date %></p>
+<p>Platform: <%= game.platform.name %>
+<p>Number of Users: <%= user_count.count %></p> <br>
 <% end %>
