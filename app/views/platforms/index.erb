@@ -1,3 +1,6 @@
 <% @platforms.each do |platform| %>
-<p><%= platform.name %></p>
+<h3>Name: <%= platform.name %></h3>
+<p>Manufacturer: <%= platform.manufacturer %></p>
+<p>Number of Games: <%= platform.games.count %></p>
+<p>Number of Users: <%= platform.users.count %>
 <% end %>
