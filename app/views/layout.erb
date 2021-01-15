@@ -4,15 +4,32 @@
         <title>
             Online Video Game Database
         </title>
+        <style>
+            .plain_link {
+                text-decoration: none;
+                color: black;
+            }
+
+            body {
+                background-color: lightblue;
+            }
+
+            header {
+                border-style: outset;
+                border-color: lightblue;
+            }
+        </style>
     </head>
     <body>
-        <h1><a href='/' style="text-decoration: none; color: black;">Welcome!</a></h1>
-        <% if Helpers.is_logged_in?(session) %>
-            <button><a href='/logout' style="text-decoration: none; color: black;">Logout</a></button>
-        <% else %>
-            <button><a href='/signup' style="text-decoration: none; color: black;">Sign Up</a></button>
-            <button><a href='/login' style="text-decoration: none; color: black;">Login</a></button>
-        <% end %>
+        <header>
+            <h1><a href='/' class='plain_link'>Welcome!</a></h1>
+            <% if Helpers.is_logged_in?(session) %>
+                <button><a href='/logout' class='plain_link'>Logout</a></button>
+            <% else %>
+                <button><a href='/signup' class='plain_link'>Sign Up</a></button>
+                <button><a href='/login' class='plain_link'>Login</a></button>
+            <% end %>
+        </header>
         <br>
         <br>
         <br>
