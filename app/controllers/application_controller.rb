@@ -34,4 +34,21 @@ class ApplicationController < Sinatra::Base
         session.clear
         redirect to '/'
     end
+
+    get '/signup' do
+        erb :'users/signup'
+    end
+
+    post '/signup' do
+        users = User.all
+        user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        if users.any?{ |u| u.email == user.email}
+            redirect to '/signup'
+        elsif users.any?{|u| u.username == user.username}
+            redirect to '/signup'
+        elsif user.save
+            session[:id] = user.id
+            redirect to '/'
+        end
+    end
 end
