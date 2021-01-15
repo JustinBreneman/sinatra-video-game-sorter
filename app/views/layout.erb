@@ -7,6 +7,15 @@
     </head>
     <body>
         <h1><a href='/' style="text-decoration: none; color: black;">Welcome!</a></h1>
+        <% if Helpers.is_logged_in?(session) %>
+            <button><a href='/logout' style="text-decoration: none; color: black;">Logout</a></button>
+        <% else %>
+            <button><a href='/signup' style="text-decoration: none; color: black;">Sign Up</a></button>
+            <button><a href='/login' style="text-decoration: none; color: black;">Login</a></button>
+        <% end %>
+        <br>
+        <br>
+        <br>
         <%= yield %>
     </body>
 </html>
