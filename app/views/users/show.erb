@@ -1,0 +1,28 @@
+<h3><%= @user.username %></h3>
+<p>
+    <button><a href='/users/<%=@user.slug%>/edit'>Edit Profile</a></button>
+    <button><a href='/games/new'>Add a New Game</a></button>
+    <button><a href='/platforms/new'>Add a New Platform</a></button>
+</p>
+<%if @user.games.count == 0%>
+    <p>You do not currently have any games registerd to your account.</p>
+<%else%>
+    <%@user.games.each do |game|%>
+        <h3>Title: <%= game.title %></h3>
+        <p>Release Date: <%= game.release_date %></p>
+        <p>Developer: <%= game.developer %></p>
+        <p>Platform: <%= game.platform %></p>
+        <br>
+    <%end%>
+<%end%>
+<br>
+<%if @user.platforms.count == 0%>
+    <p>You do not currently have any platforms registered to your account.</p>
+<%else%>
+    <%@user.platforms.each do |platform|%>
+        <h3>Name: <%= platform.name %></h3>
+        <p>Manufacturer: <%= platform.manufacturer %></p>
+        <p>Games: <%= platform.games.count %></p>
+        <br>
+    <%end%>
+<%end%>

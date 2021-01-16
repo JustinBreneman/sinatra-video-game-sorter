@@ -10,6 +10,11 @@
                 color: black;
             }
 
+            button a {
+                text-decoration: none;
+                color: black;
+            }
+
             body {
                 background-color: lightblue;
             }
@@ -24,10 +29,10 @@
         <header>
             <h1><a href='/' class='plain_link'>Welcome!</a></h1>
             <% if Helpers.is_logged_in?(session) %>
-                <button><a href='/logout' class='plain_link'>Logout</a></button>
+                <button><a href='/logout'>Logout</a></button>
             <% else %>
-                <button><a href='/signup' class='plain_link'>Sign Up</a></button>
-                <button><a href='/login' class='plain_link'>Login</a></button>
+                <button><a href='/signup'>Sign Up</a></button>
+                <button><a href='/login'>Login</a></button>
             <% end %>
         </header>
         <br>

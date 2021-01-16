@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             session[:id] = user.id
-            redirect to '/'
+            redirect to "/users/#{user.slug}"
         else
             redirect to '/login'
         end
@@ -48,7 +48,7 @@ class ApplicationController < Sinatra::Base
             redirect to '/signup'
         elsif user.save
             session[:id] = user.id
-            redirect to '/'
+            redirect to "/user/#{user.slug}"
         else
             redirect to '/signup'
         end
