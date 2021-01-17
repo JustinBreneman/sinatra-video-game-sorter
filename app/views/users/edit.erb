@@ -1,0 +1,16 @@
+<h3>Please edit your information  below:</h3>
+<form action='/users/<%=@user.slug%>' method='POST'>
+    <input id='hidden' type='hidden' name='_method' value='PATCH'>
+    <p>Username: <input id='username' type='text' name='username' value='<%=@user.username%>'></p>
+    <p>Email: <input id='email' type='text' name='email' value='<%=@user.email%>'></p>
+    <ul>
+        <%@platforms.each do |platform|%>
+            <li><%= platform.name %></li>
+            <%platform.games.each do |game|%>
+                <p> <input id='<%=game.id%>' type='checkbox' name='games[]' value='<%=game.id%>' <%='checked' if @user.games.include?(game) %>><%=game.title %></p>
+            <%end%>
+            <br>
+        <%end%> 
+    </ul>
+    <input id='submit' type='submit' value='Submit Edit'>
+</form>
