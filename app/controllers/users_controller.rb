@@ -7,11 +7,10 @@ class UsersController < ApplicationController
     
     get '/users/:slug' do
         @user = User.find_by_slug(params[:slug])
-        if @user && Helpers.is_logged_in?(session)
-            erb :'users/show'
-        else
-            redirect to '/login'
+        if Helpers.is_logged_in?(session)
+            @current_user = User.find(session[:id])
         end
+        erb :'users/show'
     end
 
     get '/users/:slug/edit' do
