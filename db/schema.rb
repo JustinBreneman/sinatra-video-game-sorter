@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_054643) do
+ActiveRecord::Schema.define(version: 2021_01_17_002325) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 2021_01_08_054643) do
     t.integer "platform_id"
   end
 
+  create_table "gameusers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+  end
+
   create_table "platforms", force: :cascade do |t|
     t.string "name"
     t.string "manufacturer"
-  end
-
-  create_table "userplatforms", force: :cascade do |t|
-    t.integer "platform_id"
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

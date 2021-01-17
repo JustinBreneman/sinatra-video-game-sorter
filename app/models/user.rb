@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-    has_many :userplatforms
-    has_many :platforms, through: :userplatforms
-    has_many :games, through: :platforms
+    has_many :gameusers
+    has_many :games, through: :gameusers
+    has_many :platforms, through: :games
     has_secure_password
 
     def slug
