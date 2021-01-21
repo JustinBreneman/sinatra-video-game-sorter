@@ -31,6 +31,7 @@
                 <% user = User.find(session[:id]) %>
                 <h1><a href='/' class='plain_link'>Welcome <%= user.username %>!</a></h1>
                 <button><a href='/logout'>Logout</a></button>
+                <button class='profile'><a href='/users/<%= user.slug %>'>Profile</a></button>
             <% else %>
                 <h1><a href='/' class='plain_link'>Welcome guest!</a></h1>
                 <div class='hide'>
