@@ -27,12 +27,16 @@
     </head>
     <body>
         <header>
-            <h1><a href='/' class='plain_link'>Welcome!</a></h1>
             <% if Helpers.is_logged_in?(session) %>
+                <% user = User.find(session[:id]) %>
+                <h1><a href='/' class='plain_link'>Welcome <%= user.username %>!</a></h1>
                 <button><a href='/logout'>Logout</a></button>
             <% else %>
-                <button><a href='/signup'>Sign Up</a></button>
-                <button><a href='/login'>Login</a></button>
+                <h1><a href='/' class='plain_link'>Welcome guest!</a></h1>
+                <div class='hide'>
+                    <button><a href='/signup'>Sign Up</a></button>
+                    <button><a href='/login'>Login</a></button>
+                </div>
             <% end %>
         </header>
         <br>
