@@ -1,0 +1,21 @@
+<form action='/games/new' method='POST'>
+    <h4>Game Info:</h4>
+    <p>Title: <input id='title' type='text' name='game[title]'></p>
+    <p>Developer: <input id='developer' type='text' name='game[developer]'></p>
+    <p>Release Date: <input id='release_date' type='text' name='game[release_date]'></p>
+    
+    <br><br>
+    
+    <h4>Add a New Platform:</h4>
+    <p>Name: <input id='name' type='text' name='platform[name]'></p>
+    <p>Manufacturer: <input id='manufacturer' type='text' name='platform[manufacturer]'></p>
+    
+    <br>
+
+    <h4>Choose an Existing Platform:</h4>
+    <% @platforms.each do |platform| %>
+        <input type='radio' id='<%= platform.id %>' name='platform[id]' value='<%= platform.id %>'>
+        <label for='<%= platform.id %>'><%= platform.name %></label><br>
+    <% end %>
+    <input id='submit' type='submit' name='submit' value='Create'>
+</form>

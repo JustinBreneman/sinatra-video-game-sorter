@@ -5,4 +5,29 @@ class GamesController < ApplicationController
         @users = User.all
         erb :'games/index'
     end
+
+    get '/games/new' do
+        if Helpers.is_logged_in?(session)
+            @platforms = Platform.all
+            @user = User.find(session[:id])
+            erb :'games/new'
+        else
+            redirect to '/login'
+        end
+    end
+
+    post '/games/new' do
+        # binding.pry
+        if !!params[:platform][:name].empty? && !!params[:platform][:manufacturer].empty? && !!params[:platform][:id].empty?
+            redirect to '/games/new'
+        elsif !params[:platform][:id].empty?
+            platform = Platform.find(params[:platform][:id])
+        else
+            platform = Platform.create(name: params[:platform][:name], manufacturer: params[:platform][:manufacturer])
+        end
+        user = User.find(session[:id])
+        user.games.build(title: params[:game][:title], developer: params[:game][:developer], release_date: params[:game][:release_date], platform: platform)
+        user.save
+        redirect to '/games/'
+    end
 end
