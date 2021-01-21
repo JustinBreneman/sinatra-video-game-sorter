@@ -17,6 +17,8 @@ class ApplicationController < Sinatra::Base
     get '/login' do
         if !Helpers.is_logged_in?(session)
             erb :'users/login'
+        else
+            redirect to '/'
         end
     end
 
