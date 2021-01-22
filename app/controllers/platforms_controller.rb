@@ -15,6 +15,6 @@ class PlatformsController < ApplicationController
 
     post '/platforms/new' do
         platform = Platform.create(name: params[:name], manufacturer: params[:manufacturer])
-        redcirect to '/platforms/'
+        redirect to '/platforms/'
     end
 end
