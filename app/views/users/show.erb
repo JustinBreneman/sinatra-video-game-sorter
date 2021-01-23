@@ -22,7 +22,7 @@
     <p>There are currently no games registered to this account.</p>
 <%else%>
     <%@user.games.each do |game|%>
-        <h2>Title: <%= game.title.capitalize %></h2>
+        <h2><a href='/games/<%= game.slug %>' class='plain_link'>Title: <%= game.title.capitalize %></h2>
         <h3>Platform: <%= game.platform.name.capitalize %></h3>
         <p>Release Date: <%= game.release_date %></p>
         <p>Developer: <%= game.developer %></p>
