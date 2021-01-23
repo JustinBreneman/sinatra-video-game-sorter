@@ -63,8 +63,16 @@ class GamesController < ApplicationController
     get '/games/:slug/delete' do
         game = Game.find_by_slug(params[:slug])
         if Helpers.is_logged_in?(session) && @game != "" && !!@game
-            game.delete
-            redirect to '/games/'
+            user.find(session[:id])
+            if game.users.include?(user) && game.users.count > 1
+                game.users.delete(user)
+                redirect to '/games/'
+            elsif game.users.count == 0 || (game.users.include?(user) && game.users.count == 1)
+                game.delete
+                redirect to '/games/'
+            else
+                redirect to '/games/'
+            end
         else
             redirect to '/login'
         end
