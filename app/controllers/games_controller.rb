@@ -32,7 +32,7 @@ class GamesController < ApplicationController
 
     get '/games/:slug' do
         @game = Game.find_by_slug(params[:slug])
-        if @game != ""
+        if @game != "" && !!@game
             erb :'games/show'
         else
             redirect to '/games/'
