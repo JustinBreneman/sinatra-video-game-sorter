@@ -10,6 +10,11 @@
         <button><a href='/games/new'>Add a New Game</a></button>
         <button><a href='/platforms/new'>Add a New Platform</a></button>
     </p>
+    <form action='/users/<%= @user.slug %>' method='POST'>
+        <input id='hidden' type='hidden' name='_method' value='DELETE'>
+        <p>Password: <input id='password' type='password' name='password' required>
+        <input id='submit' type='submit' name='submit' value='Delete Profile'></p>
+    </form>
 <%elsif Helpers.is_logged_in?(session) %>
     <p>
         <button><a href='/games/new'>Add a New Game</a></button>
