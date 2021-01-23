@@ -1,4 +1,6 @@
-<button><a href='/platforms/new'>Add a New Platform</a></button>
+<% if Helpers.is_logged_in?(session) %>
+    <button><a href='/platforms/new'>Add a New Platform</a></button>
+<% end %>
 <% @platforms.each do |platform| %>
     <h3>Name: <%= platform.name.capitalize %></h3>
     <p>Manufacturer: <%= platform.manufacturer %></p>
