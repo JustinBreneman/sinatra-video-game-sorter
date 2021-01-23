@@ -1,6 +1,7 @@
+<button><a href='/platforms/new'>Add a New Platform</a></button>
 <% @platforms.each do |platform| %>
-<h3>Name: <%= platform.name.capitalize %></h3>
-<p>Manufacturer: <%= platform.manufacturer %></p>
-<p>Number of Games: <%= platform.games.count %></p>
-<p>Number of Users: <%= platform.users.count %>
+    <h3>Name: <%= platform.name.capitalize %></h3>
+    <p>Manufacturer: <%= platform.manufacturer %></p>
+    <p>Number of Games: <%= platform.games.count %></p>
+    <p>Number of Users: <%= platform.users.count %>
 <% end %>
