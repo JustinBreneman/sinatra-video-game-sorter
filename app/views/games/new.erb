@@ -15,7 +15,7 @@
     <h4>Choose an Existing Platform:</h4>
     <% @platforms.each do |platform| %>
         <input type='radio' id='<%= platform.id %>' name='platform[id]' value='<%= platform.id %>'>
-        <label for='<%= platform.id %>'><%= platform.name %></label><br>
+        <label for='<%= platform.id %>'><%= platform.name.capitalize %></label><br>
     <% end %>
     <input id='submit' type='submit' name='submit' value='Create'>
 </form>
