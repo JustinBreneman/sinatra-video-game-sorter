@@ -34,4 +34,25 @@ class GamesController < ApplicationController
         @game = Game.find_by_slug(params[:slug])
         erb :'games/show'
     end
+
+    get '/games/:slug/edit' do
+        if Helpers.is_logged_in?(session)
+            @game = Game.find_by_slug(params[:slug])
+            @platforms = Platform.all
+            erb :'games/edit'
+        else
+            redirect to '/login'
+        end
+    end
+
+    post '/games/:slug' do
+        game = Game.find_by_slug(params[:slug])
+        if !params[:platform][:id].empty?
+            platform = Platform.find(params[:platform][:id])
+        else
+            platform = Platform.create(name: params[:platform][:name], manufacturer: params[:platform][:manufacturer])
+        end
+        game.update(title: params[:game][:title], developer: params[:game][:developer], release_date: params[:game][:release_date], platform: platform)
+        redirect to "/games/#{game.slug}"
+    end
 end

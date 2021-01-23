@@ -1,6 +1,6 @@
 <h1><%= @game.title.capitalize %>:</h1>
 <h2>Platform: <%= @game.platform.name.capitalize %></h2>
-<h2>Developer: <%= @game.developer.name %></h2>
+<h2>Developer: <%= @game.developer %></h2>
 <h2>Users with this game:</h2>
 <% @game.users.each do |user| %>
     <h3><a href='/users/<%= user.slug %>' class='plain_link'><%= user.username.capitalize %></a></h3>

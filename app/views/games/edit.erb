@@ -1,9 +1,8 @@
 <form action='/games/<%= @game.slug %>' method='POST'>
-    <h2>Edit the game <%= @game.title %> on <%= @game.platform %> below:
+    <h2>Edit the game <%= @game.title.capitalize %> on <%= @game.platform.name.capitalize %> below:</h2>
     <p>Title: <input id='title' type='text' name='game[title]' value='<%= @game.title %>' required></p>
     <p>Developer: <input id='developer' type='text' name='game[developer]' value='<%= @game.developer %>' required></p>
     <p>Release Date: <input id='release_date' type='text' name='game[release_date]' value='<%= @game.release_date %>' required></p>
-    <br><br>
 
     <h3>Please choose or create a platform:</h3>
     <br>
@@ -15,7 +14,7 @@
 
     <h4>Choose an Existing Platform:</h4>
     <% @platforms.each do |platform| %>
-        <input type='radio' id='<%= platform.id %>' name='platform[id]' value='<%= platform.id %>'>
+        <input type='radio' id='<%= platform.id %>' name='platform[id]' value='<%= platform.id %>' <%= 'checked' if platform == @game.platform %>>
         <label for='<%= platform.id %>'><%= platform.name.capitalize %></label><br>
     <% end %>
     <input id='submit' type='submit' name='submit' value='Save Changes'>
