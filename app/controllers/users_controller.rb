@@ -24,14 +24,20 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:slug' do
-        @user = User.find_by_slug(params[:slug])
+        user = User.find_by_slug(params[:slug])
         game_ids = params[:games]
         games = []
         game_ids.each do |id|
             games << Game.find(id)
         end
-        @user.update(games: games)
-        redirect to "/users/#{@user.slug}"
+        if User.any?{|u| u.username == user.username}
+            redirect to "/users/#{user.slug}/edit"
+        elsif User.any?{|u| u.email == user.email}
+            redirect to "/users/#{user.slug}/edit"
+        else
+            user.update(username: params[:username], email: params[:email], games: games)
+        end
+        redirect to "/users/#{user.slug}"
     end
 
     delete '/users/:slug' do
