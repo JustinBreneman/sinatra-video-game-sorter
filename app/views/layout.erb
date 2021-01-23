@@ -40,7 +40,11 @@
                 </div>
             <% end %>
         </header>
-        <br>
+        <% if flash[:message] %>
+            <p><%= flash[:message] %></p>
+        <% else %>
+            <br>
+        <% end %>
         <%= yield %>
     </body>
 </html>
