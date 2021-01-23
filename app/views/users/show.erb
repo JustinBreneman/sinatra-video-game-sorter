@@ -3,7 +3,7 @@
         visibility: hidden;
     }
 </style>
-<h1><%= @user.username %></h1>
+<h1><%= @user.username.capitalize %></h1>
 <%if @user == @current_user %>
     <p>
         <button><a href='/users/<%=@user.slug%>/edit'>Edit Profile</a></button>
@@ -22,10 +22,10 @@
     <p>There are currently no games registered to this account.</p>
 <%else%>
     <%@user.games.each do |game|%>
-        <h2>Title: <%= game.title %></h2>
+        <h2>Title: <%= game.title.capitalize %></h2>
         <h3>Platform: <%= game.platform.name %></h3>
         <p>Release Date: <%= game.release_date %></p>
-        <p>Developer: <%= game.developer %></p>
+        <p>Developer: <%= game.developer.capitalize %></p>
         <br>
     <%end%>
 <%end%>
