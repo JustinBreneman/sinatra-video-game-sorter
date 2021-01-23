@@ -43,7 +43,11 @@ class ApplicationController < Sinatra::Base
 
     post '/signup' do
         users = User.all
-        user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        if params[:email].include?('@') && params[:email].include?('.com')
+            user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        else
+            redirect to '/signup'
+        end
         if users.any?{ |u| u.email == user.email}
             redirect to '/signup'
         elsif users.any?{|u| u.username == user.username}

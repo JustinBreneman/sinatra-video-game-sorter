@@ -30,7 +30,9 @@ class UsersController < ApplicationController
         game_ids.each do |id|
             games << Game.find(id)
         end
-        if User.any?{|u| u.username == user.username}
+        if !params[:email].include?('@') && !params[:email].include?('.com')
+            redirect to "/users/#{user.slug}/edit"
+        elsif User.any?{|u| u.username == user.username}
             redirect to "/users/#{user.slug}/edit"
         elsif User.any?{|u| u.email == user.email}
             redirect to "/users/#{user.slug}/edit"
