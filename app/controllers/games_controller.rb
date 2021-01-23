@@ -40,9 +40,9 @@ class GamesController < ApplicationController
     end
 
     get '/games/:slug/edit' do
-        if Helpers.is_logged_in?(session)
-            @game = Game.find_by_slug(params[:slug])
-            @platforms = Platform.all
+        @game = Game.find_by_slug(params[:slug])
+        @platforms = Platform.all
+        if Helpers.is_logged_in?(session) && @game != "" && !!@game
             erb :'games/edit'
         else
             redirect to '/login'
@@ -62,7 +62,11 @@ class GamesController < ApplicationController
 
     get '/games/:slug/delete' do
         game = Game.find_by_slug(params[:slug])
-        game.delete
-        redirect to '/games/'
+        if Helpers.is_logged_in?(session) && @game != "" && !!@game
+            game.delete
+            redirect to '/games/'
+        else
+            redirect to '/login'
+        end
     end
 end
