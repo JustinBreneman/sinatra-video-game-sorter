@@ -32,7 +32,11 @@ class GamesController < ApplicationController
 
     get '/games/:slug' do
         @game = Game.find_by_slug(params[:slug])
-        erb :'games/show'
+        if @game != ""
+            erb :'games/show'
+        else
+            redirect to '/games/'
+        end
     end
 
     get '/games/:slug/edit' do
@@ -54,5 +58,11 @@ class GamesController < ApplicationController
         end
         game.update(title: params[:game][:title], developer: params[:game][:developer], release_date: params[:game][:release_date], platform: platform)
         redirect to "/games/#{game.slug}"
+    end
+
+    get '/games/:slug/delete' do
+        game = Game.find_by_slug(params[:slug])
+        game.delete
+        redirect to '/games/'
     end
 end
