@@ -1,3 +1,4 @@
+<button><a href='/games/new'>Add a New Game</a></button>
 <% @games.each do |game| %>
     <% user_count = 0 %>
     <% @users.each{|u| if u.games.include?(game) then user_count += 1 end} %>
