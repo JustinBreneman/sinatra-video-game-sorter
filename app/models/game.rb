@@ -4,6 +4,8 @@ class Game < ActiveRecord::Base
     has_many :users, through: :gameusers
 
     def slug
-        Helpers.slugify(self.title)
+        title_slug = Helpers.slugify(self.title)
+        platform_slug = Helpers.slugify(self.platform.name)
+        title_slug + "_on_" + platform_slug
     end
 end

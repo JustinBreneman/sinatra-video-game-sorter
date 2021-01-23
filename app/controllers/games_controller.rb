@@ -17,7 +17,6 @@ class GamesController < ApplicationController
     end
 
     post '/games/new' do
-        # binding.pry
         if !!params[:platform][:name].empty? && !!params[:platform][:manufacturer].empty? && !!params[:platform][:id].empty?
             redirect to '/games/new'
         elsif !params[:platform][:id].empty?
@@ -29,5 +28,10 @@ class GamesController < ApplicationController
         user.games.build(title: params[:game][:title], developer: params[:game][:developer], release_date: params[:game][:release_date], platform: platform)
         user.save
         redirect to '/games/'
+    end
+
+    get '/games/:slug' do
+        @game = Game.find_by_slug(params[:slug])
+        erb :'games/show'
     end
 end

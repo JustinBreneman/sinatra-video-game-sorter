@@ -1,0 +1,7 @@
+<h1><%= @game.title %>:</h1>
+<h2>Platform: <%= @game.platform.name %></h2>
+<h2>Users with this game:</h2>
+<% @game.users.each do |user| %>
+    <h3><a href='/users/<%= user.slug %>' class='plain_link'><%= user.username %></h3>
+    <p>Amount of games: <%= user.games.count %></p>
+<% end %>
