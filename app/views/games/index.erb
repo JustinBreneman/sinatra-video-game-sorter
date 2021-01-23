@@ -4,7 +4,7 @@
 <% @games.each do |game| %>
     <% user_count = 0 %>
     <% @users.each{|u| if u.games.include?(game) then user_count += 1 end} %>
-    <h3>Title: <%= game.title.capitalize %></h3>
+    <h3><a href='/games/<%= game.slug %>' class='plain_link'>Title: <%= game.title.capitalize %></a></h3>
     <p>Developer: <%= game.developer %></p>
     <p>Release Date: <%= game.release_date %></p>
     <p>Platform: <%= game.platform.name.capitalize %></p>
