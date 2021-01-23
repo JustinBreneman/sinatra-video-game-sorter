@@ -23,9 +23,9 @@
 <%else%>
     <%@user.games.each do |game|%>
         <h2>Title: <%= game.title.capitalize %></h2>
-        <h3>Platform: <%= game.platform.name %></h3>
+        <h3>Platform: <%= game.platform.name.capitalize %></h3>
         <p>Release Date: <%= game.release_date %></p>
-        <p>Developer: <%= game.developer.capitalize %></p>
+        <p>Developer: <%= game.developer %></p>
         <br>
     <%end%>
 <%end%>

@@ -1,5 +1,5 @@
 <% @platforms.each do |platform| %>
-<h3>Name: <%= platform.name %></h3>
+<h3>Name: <%= platform.name.capitalize %></h3>
 <p>Manufacturer: <%= platform.manufacturer %></p>
 <p>Number of Games: <%= platform.games.count %></p>
 <p>Number of Users: <%= platform.users.count %>
