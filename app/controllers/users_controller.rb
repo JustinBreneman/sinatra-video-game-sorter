@@ -19,6 +19,7 @@ class UsersController < ApplicationController
             @platforms = Platform.all
             erb :'users/edit'
         else
+            flash[:message] = "Please login to edit your account."
             redirect to '/login'
         end
     end
@@ -31,15 +32,18 @@ class UsersController < ApplicationController
             games << Game.find(id)
         end
         if !params[:email].include?('@') && !params[:email].include?('.com')
+            flash[:message] = "Please enter a valid email."
             redirect to "/users/#{user.slug}/edit"
-        elsif User.any?{|u| u.username == user.username}
+        elsif user.username != params[:username] && User.any?{|u| u.username == params[:username]}
+            flash[:message] = "That username is already in use, please choose another one."
             redirect to "/users/#{user.slug}/edit"
-        elsif User.any?{|u| u.email == user.email}
+        elsif user.email != params[:email] && User.any?{|u| u.email == params[:email]}
             redirect to "/users/#{user.slug}/edit"
         else
+            flash[:message] = "Successfully updated your account."
             user.update(username: params[:username], email: params[:email], games: games)
+            redirect to "/users/#{user.slug}"
         end
-        redirect to "/users/#{user.slug}"
     end
 
     delete '/users/:slug' do
@@ -48,8 +52,10 @@ class UsersController < ApplicationController
         if user == current_user && user.authenticate(params[:password]) && current_user.authenticate(params[:password])
             session.clear
             user.delete
+            flash[:message] = "Your account has been successfully deleted."
             redirect to '/users/'
         else
+            flash[:message] = "Please login to delete your account."
             redirect to "/users/#{user.slug}"
         end
     end

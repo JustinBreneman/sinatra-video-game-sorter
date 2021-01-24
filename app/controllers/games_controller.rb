@@ -12,12 +12,14 @@ class GamesController < ApplicationController
             @user = User.find(session[:id])
             erb :'games/new'
         else
+            flash[:message] = "Please login to add a new game"
             redirect to '/login'
         end
     end
 
     post '/games/new' do
         if !!params[:platform][:name].empty? && !!params[:platform][:manufacturer].empty? && !!params[:platform][:id].empty?
+            flash[:message] = "Please either add a new platform or choose an existing one."
             redirect to '/games/new'
         elsif !params[:platform][:id].empty?
             platform = Platform.find(params[:platform][:id])
@@ -45,6 +47,7 @@ class GamesController < ApplicationController
         if Helpers.is_logged_in?(session) && @game != "" && !!@game
             erb :'games/edit'
         else
+            flash[:message] = "Please login to edit a game."
             redirect to '/login'
         end
     end
@@ -64,16 +67,23 @@ class GamesController < ApplicationController
         game = Game.find_by_slug(params[:slug])
         if Helpers.is_logged_in?(session) && @game != "" && !!@game
             user.find(session[:id])
-            if game.users.include?(user) && game.users.count > 1
+            if !!game
+                flash[:message] = "Could not find the game to delete."
+                redirect to '/games/'
+            elsif game.users.include?(user) && game.users.count > 1
                 game.users.delete(user)
+                flash[:message] = "#{game.title} on #{game.platform} has been removed from your account."
                 redirect to '/games/'
             elsif game.users.count == 0 || (game.users.include?(user) && game.users.count == 1)
                 game.delete
+                flash[:message] = "#{game.titlle} on #{game.platform} has been deleted."
                 redirect to '/games/'
             else
+                flash[:message] = "#{game.title} on #{game.platform} is not on your account."
                 redirect to '/games/'
             end
         else
+            flash[:message] = "Please login to delete a game."
             redirect to '/login'
         end
     end
