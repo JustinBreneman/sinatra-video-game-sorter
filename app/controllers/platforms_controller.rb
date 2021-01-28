@@ -9,6 +9,7 @@ class PlatformsController < ApplicationController
         if Helpers.is_logged_in?(session)
             erb :'platforms/new'
         else
+            flash[:message] = "Please login to add a new platform."
             redirect to '/login'
         end
     end
