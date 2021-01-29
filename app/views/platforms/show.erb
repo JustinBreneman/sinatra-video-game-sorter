@@ -1,0 +1,8 @@
+<h2><%= @platform.name %></h2>
+<h3>Manufacturer: <%= @platform.manufacturer %></h3>
+<p>Number of users: <%= @platform.users.count %></p>
+<p>Number of games: <%= @platform.games.count %></p>
+<% if Helpers.is_logged_in?(session) %>
+    <button><a href='/platforms/<%= @platform.slug %>/edit' class='plain_link'>Edit Platform</a></button>
+    <button><a href='/platforms/<%= @platform.slug %>/delete' class='plain_link'>Delete Platform</a></button>
+<% end %>

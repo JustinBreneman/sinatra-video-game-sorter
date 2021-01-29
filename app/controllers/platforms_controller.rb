@@ -18,4 +18,9 @@ class PlatformsController < ApplicationController
         platform = Platform.create(name: params[:name], manufacturer: params[:manufacturer])
         redirect to '/platforms/'
     end
+
+    get '/platforms/:slug' do
+        @platform = Platform.find_by_slug(params[:slug])
+        erb :'/platforms/show'
+    end
 end
