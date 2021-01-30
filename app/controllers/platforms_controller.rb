@@ -30,7 +30,7 @@ class PlatformsController < ApplicationController
             erb :'platforms/edit'
         else
             flash[:message] = "Please login to edit a Platform."
-            redirect to "/platforms/#{params[:slug]}"
+            redirect to '/login'
         end
     end
 
@@ -45,6 +45,21 @@ class PlatformsController < ApplicationController
         else
             platform.update(name: params[:name], manufacturer: params[:manufacturer])
             redirect to "/platforms/#{platform.slug}"
+        end
+    end
+
+    get '/platforms/:slug/delete' do
+        platform = Platform.find_by_slug(params[:slug])
+        if !Helpers.is_logged_in?(session)
+            flash[:message] = "Please login to delete a Platform."
+            redirect to '/login'
+        elsif platform.users.count > 1
+            flash[:message] = "Please ensure that all users are have removed this platform from their account before proceeding."
+            redirect to "/platforms/#{params[:slug]}"
+        elsif (platform.users.count == 1 && platform.users.include?(User.find(session[:id]))) || platform.users.count == 0
+            platform.games.each{|game| game.delete}
+            platform.delete
+            redirect to '/platforms/'
         end
     end
 end
