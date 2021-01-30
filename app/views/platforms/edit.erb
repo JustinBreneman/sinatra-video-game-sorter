@@ -1,0 +1,5 @@
+<form action='/platforms/<%= @platform.slug %>' method='POST'>
+    <h2>Name: <input id='name' type='text' name='name' value='<%= @platform.name %>'></h2>
+    <h3>Manufacturer: <input id='manufacturer' type='text' name='manufacturer' value='<%= @platform.manufacturer %>'></h3>
+    <input id='submit' type='submit' name='submit' value='Save Changes'>
+</form>
