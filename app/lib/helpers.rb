@@ -4,15 +4,7 @@ class Helpers
     end
 
     def self.slugify(phrase)
-        if !!phrase.downcase!
-            phrase
-        else
-            phrase
-        end
-        if !!phrase.gsub!(/[^0-9A-Za-z ]/, '')
-            phrase.split(" ").join("-")
-        else
-            phrase.split(" ").join("-")
-        end
+        !!phrase.downcase! ? text : text
+        !!phrase.gsub!(/[^0-9A-Za-z ]/, '') ? phrase.split(" ").join("-") : phrase.split(" ").join("-")
     end
 end
