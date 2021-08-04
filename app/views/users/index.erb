@@ -1,5 +1,5 @@
 <% @users.each do |user| %>
     <h3><a href='/users/<%= user.slug %>' class='plain_link'>Username: <%= user.username.capitalize %></a></h3>
     <p>Games: <%= user.games.count %></p>
-    <p>Platforms: <%= user.platforms.count %></p><br>
+    <p>Platforms: <%= user.platforms.uniq.count %></p><br>
 <% end %>
