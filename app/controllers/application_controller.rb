@@ -59,7 +59,7 @@ class ApplicationController < Sinatra::Base
             redirect to '/signup'
         elsif user.save
             session[:id] = user.id
-            redirect to "/user/#{user.slug}"
+            redirect to "/users/#{user.slug}"
         else
             flash[:message] = "Something went wrong, please try again."
             redirect to '/signup'
