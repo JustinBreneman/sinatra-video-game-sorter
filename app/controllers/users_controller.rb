@@ -50,10 +50,13 @@ class UsersController < ApplicationController
         user = User.find_by_slug(params[:slug])
         current_user = User.find(session[:id])
         if user == current_user && user.authenticate(params[:password]) && current_user.authenticate(params[:password])
-            session.clear
             user.delete
+            session.clear
             flash[:message] = "Your account has been successfully deleted."
             redirect to '/users/'
+        elsif user == current_user && !user.authenticate(params[:password]) && !current_user.authenticate(params[:password])
+            flash[:message] = "Incorrect Pasword."
+            redirect to "/users/#{user.slug}"
         else
             flash[:message] = "Please login to delete your account."
             redirect to "/users/#{user.slug}"
