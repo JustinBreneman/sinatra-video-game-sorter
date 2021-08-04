@@ -18,10 +18,10 @@ class GamesController < ApplicationController
     end
 
     post '/games/new' do
-        if !!params[:platform][:name].empty? && !!params[:platform][:manufacturer].empty? && !!params[:platform][:id].empty?
+        if !!params[:platform][:name].empty? && !!params[:platform][:manufacturer].empty? && !!params[:platform][:id]
             flash[:message] = "Please either add a new platform or choose an existing one."
             redirect to '/games/new'
-        elsif !params[:platform][:id].empty?
+        elsif !!params[:platform][:id]
             platform = Platform.find(params[:platform][:id])
         else
             platform = Platform.create(name: params[:platform][:name], manufacturer: params[:platform][:manufacturer])
